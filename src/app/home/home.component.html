@@ -1,0 +1,72 @@
+<div class="home-page">
+  <div *ngIf="channel; else noData">
+    <div *ngIf="user">
+      <h1>User</h1>
+      <div>
+        <table>
+          <tr>
+            <th>Profile Image</th>
+            <th>Name</th>
+            <th>Broadcaster type</th>
+          </tr>
+          <tr>
+            <td><img src="{{ user?.profile_image_url }}" /></td>
+            <td>{{ user?.display_name }}</td>
+            <td>{{ user?.broadcaster_type }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div *ngIf="videos">
+      <h1>Videos</h1>
+      <div>
+        <table>
+          <tr>
+            <th>Title</th>
+            <th>User</th>
+            <th>Duration</th>
+          </tr>
+          <tr *ngFor="let video of videos">
+            <td>{{ video?.title }}</td>
+            <td>{{ video?.user_login }}</td>
+            <td>{{ video?.duration }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div *ngIf="streams">
+      <h1>Streams</h1>
+      <div>
+        <table>
+          <tr>
+            <th>Title</th>
+            <th>Vewer count</th>
+            <th>Started at</th>
+          </tr>
+          <tr *ngFor="let stream of streams">
+            <td>{{ stream.title }}</td>
+            <td>{{ stream?.viewer_count }}</td>
+            <td>{{ stream?.started_at }}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div *ngIf="topGames">
+      <h1>Top Games</h1>
+      <div>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Image</th>
+          </tr>
+          <tr *ngFor="let game of topGames">
+            <td>{{ game.name }}</td>
+            <td><img src="{{ game?.box_art_url }}" /></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #noData>No channel selected</ng-template>
+</div>

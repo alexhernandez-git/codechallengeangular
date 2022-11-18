@@ -1,0 +1,19 @@
+<nav class="header">
+  <div ngModel #form>
+    <form [formGroup]="queryForm" (ngSubmit)="submitForm()">
+      <div class="input-group">
+        <input type="text" formControlName="query" class="form-control" />
+        <button type="submit" class="btn btn-secondary">Submit</button>
+      </div>
+    </form>
+    <div class="form-container">
+      <div *ngIf="channels?.length > 0 && isOpen" class="list-container">
+        <ul class="list">
+          <li *ngFor="let channel of channels" (click)="setChannel(channel)">
+            {{ channel.display_name }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
