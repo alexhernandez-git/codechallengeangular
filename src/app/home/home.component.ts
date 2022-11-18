@@ -1,7 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-
-import { ArticleListConfig, UserService } from "../core";
 import { ChannelsService } from "../core/services/channels.service";
 import { StreamsService } from "../core/services/streams.service";
 import { TopGamesService } from "../core/services/top-games.service";
@@ -24,17 +21,8 @@ export class HomeComponent implements OnInit {
   streams: Stream[] = [] as Stream[];
   topGames: TopGame[] = [] as TopGame[];
   videos: Video[] = [] as Video[];
-  isAuthenticated: boolean;
-  listConfig: ArticleListConfig = {
-    type: "all",
-    filters: {},
-  };
-  tags: Array<string> = [];
-  tagsLoaded = false;
 
   constructor(
-    private router: Router,
-    private userService: UserService,
     private channelsService: ChannelsService,
     private streamsService: StreamsService,
     private topGamesService: TopGamesService,
@@ -43,10 +31,6 @@ export class HomeComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.userService.isAuthenticated.subscribe((authenticated) => {
-      this.isAuthenticated = authenticated;
-    });
-
     this.channelsService.channel.subscribe((channel) => {
       this.channel = channel;
       this.usersService.getUser(channel.broadcaster_login);
